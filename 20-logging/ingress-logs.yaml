@@ -1,4 +1,4 @@
-# https://logs.digitalwitch.online -> opensearch-dashboards (protected by NGINX basic auth, Secret "basic-auth")
+# https://logs.jogecloud.online -> opensearch-dashboards (protected by NGINX basic auth, Secret "basic-auth")
 #
 # F5 NGINX mergeable Ingresses:
 #   master = host + TLS certificate (issuer letsencrypt-prod-mergeable)
@@ -21,11 +21,11 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - logs.digitalwitch.online
-      secretName: logs-tls
+  - hosts:
+    - logs.jogecloud.online
+    secretName: logs-tls
   rules:
-    - host: logs.digitalwitch.online
+  - host: logs.jogecloud.online
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -39,13 +39,13 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: logs.digitalwitch.online
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: opensearch-dashboards
-                port:
-                  name: http
+  - host: logs.jogecloud.online
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: opensearch-dashboards
+            port:
+              name: http

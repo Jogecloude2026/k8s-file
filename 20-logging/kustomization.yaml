@@ -7,14 +7,14 @@ commonAnnotations:
   argocd.argoproj.io/sync-wave: "2"
 
 resources:
-  - opensearch.yaml
-  - opensearch-dashboards.yaml
-  - ingress-logs.yaml # https://logs.digitalwitch.online (basic auth)
+- opensearch.yaml
+- opensearch-dashboards.yaml
+- ingress-logs.yaml # https://logs.jogecloud.online (basic auth)
 
-# Secret "basic-auth" (for logs.digitalwitch.online) is NOT stored in Git -
+# Secret "basic-auth" (for logs.jogecloud.online) is NOT stored in Git -
 # create it with create-secrets.sh.
 
 # Image tags - updated automatically by the ecommerce-final-project pipeline
 images:
-  - name: 060647991200.dkr.ecr.us-east-2.amazonaws.com/ecomerce/opensearch
-    newTag: "10"
+- name: 850919910503.dkr.ecr.eu-north-1.amazonaws.com/ecomerce/opensearch
+  newTag: "10"

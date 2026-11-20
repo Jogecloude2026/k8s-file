@@ -8,22 +8,22 @@ commonAnnotations:
   argocd.argoproj.io/sync-wave: "1"
 
 resources:
-  - postgresql.yaml
-  - valkey-cart.yaml
-  - kafka.yaml
+- postgresql.yaml
+- valkey-cart.yaml
+- kafka.yaml
 
 configMapGenerator:
-  # Mounted at /docker-entrypoint-initdb.d; runs only on an empty database.
-  # 01-init.sql is a copy of src/postgresql/init.sql.
-  - name: postgres-init
-    files:
-      - config/01-init.sql
-      - config/02-set-passwords.sh
+# Mounted at /docker-entrypoint-initdb.d; runs only on an empty database.
+# 01-init.sql is a copy of src/postgresql/init.sql.
+- name: postgres-init
+  files:
+  - config/01-init.sql
+  - config/02-set-passwords.sh
 
 # Secret "postgres-secrets" is NOT stored in Git - create it with
 # create-secrets.sh before the first sync.
 
 # Image tags - updated automatically by the ecommerce-final-project pipeline
 images:
-  - name: 060647991200.dkr.ecr.us-east-2.amazonaws.com/ecomerce/kafka
-    newTag: "10"
+- name: 850919910503.dkr.ecr.eu-north-1.amazonaws.com/ecomerce/kafka
+  newTag: "10"

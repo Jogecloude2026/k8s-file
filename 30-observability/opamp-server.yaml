@@ -11,12 +11,12 @@ spec:
   selector:
     app: opamp-server
   ports:
-    - name: opamp
-      port: 4320
-      targetPort: opamp
-    - name: ui
-      port: 4321
-      targetPort: ui
+  - name: opamp
+    port: 4320
+    targetPort: opamp
+  - name: ui
+    port: 4321
+    targetPort: ui
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -37,21 +37,21 @@ spec:
     spec:
       enableServiceLinks: false
       containers:
-        - name: opamp-server
-          image: 060647991200.dkr.ecr.us-east-2.amazonaws.com/ecomerce/opamp-server:latest
-          ports:
-            - name: opamp
-              containerPort: 4320
-            - name: ui
-              containerPort: 4321
-          resources:
-            requests: { cpu: 20m, memory: 32Mi }
-            limits: { memory: 64Mi }
-          readinessProbe:
-            httpGet: { path: /, port: ui }
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          livenessProbe:
-            tcpSocket: { port: ui }
-            initialDelaySeconds: 20
-            periodSeconds: 20
+      - name: opamp-server
+        image: 850919910503.dkr.ecr.eu-north-1.amazonaws.com/ecomerce/opamp-server:latest
+        ports:
+        - name: opamp
+          containerPort: 4320
+        - name: ui
+          containerPort: 4321
+        resources:
+          requests: { cpu: 20m, memory: 32Mi }
+          limits: { memory: 64Mi }
+        readinessProbe:
+          httpGet: { path: /, port: ui }
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket: { port: ui }
+          initialDelaySeconds: 20
+          periodSeconds: 20

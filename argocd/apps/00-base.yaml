@@ -12,7 +12,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/digitalwitchdemo/k8s-file.git
+    repoURL: https://github.com/Jogecloude2026/k8s-file.git
     targetRevision: main
     path: 00-base
   destination:
@@ -22,7 +22,7 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - ServerSideApply=true
+    - ServerSideApply=true
     retry:
       limit: 5
       backoff:

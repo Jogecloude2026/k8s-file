@@ -10,9 +10,9 @@ spec:
   selector:
     app: load-generator
   ports:
-    - name: http
-      port: 8089
-      targetPort: http
+  - name: http
+    port: 8089
+    targetPort: http
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -33,35 +33,35 @@ spec:
     spec:
       enableServiceLinks: false
       containers:
-        - name: load-generator
-          image: 060647991200.dkr.ecr.us-east-2.amazonaws.com/ecomerce/load-generator:latest
-          ports:
-            - name: http
-              containerPort: 8089
-          envFrom:
-            - configMapRef:
-                name: app-env
-          env:
-            - name: OTEL_SERVICE_NAME
-              value: load-generator
-            - name: OTEL_RESOURCE_ATTRIBUTES
-              value: "service.namespace=opentelemetry-demo,service.version=3.0.0,service.criticality=low"
-            - name: LOCUST_WEB_HOST
-              value: 0.0.0.0
-            - name: LOCUST_BROWSER_TRAFFIC_ENABLED
-              value: "true"
-            - name: OTEL_PYTHON_SDK_INTERNAL_METRICS_ENABLED
-              value: "true"
-            - name: PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION
-              value: python
-          resources:
-            requests: { cpu: 20m, memory: 900Mi }
-            limits: { memory: 1500Mi }
-          readinessProbe:
-            tcpSocket: { port: http }
-            initialDelaySeconds: 10
-            periodSeconds: 10
-          livenessProbe:
-            tcpSocket: { port: http }
-            initialDelaySeconds: 60
-            periodSeconds: 20
+      - name: load-generator
+        image: 850919910503.dkr.ecr.eu-north-1.amazonaws.com/ecomerce/load-generator:latest
+        ports:
+        - name: http
+          containerPort: 8089
+        envFrom:
+        - configMapRef:
+            name: app-env
+        env:
+        - name: OTEL_SERVICE_NAME
+          value: load-generator
+        - name: OTEL_RESOURCE_ATTRIBUTES
+          value: "service.namespace=opentelemetry-demo,service.version=3.0.0,service.criticality=low"
+        - name: LOCUST_WEB_HOST
+          value: 0.0.0.0
+        - name: LOCUST_BROWSER_TRAFFIC_ENABLED
+          value: "true"
+        - name: OTEL_PYTHON_SDK_INTERNAL_METRICS_ENABLED
+          value: "true"
+        - name: PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION
+          value: python
+        resources:
+          requests: { cpu: 20m, memory: 900Mi }
+          limits: { memory: 1500Mi }
+        readinessProbe:
+          tcpSocket: { port: http }
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket: { port: http }
+          initialDelaySeconds: 60
+          periodSeconds: 20

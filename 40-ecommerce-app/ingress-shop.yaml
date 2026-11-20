@@ -1,4 +1,4 @@
-# https://shop.digitalwitch.online -> frontend-proxy (Envoy)
+# https://shop.jogecloud.online -> frontend-proxy (Envoy)
 # Envoy then routes /, /feature (flag UI), /loadgen/ (Locust), /images/,
 # /otlp-http/ (browser telemetry) to the right service.
 apiVersion: networking.k8s.io/v1
@@ -18,17 +18,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - shop.digitalwitch.online
-      secretName: shop-tls
+  - hosts:
+    - shop.jogecloud.online
+    secretName: shop-tls
   rules:
-    - host: shop.digitalwitch.online
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: frontend-proxy
-                port:
-                  name: http
+  - host: shop.jogecloud.online
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-proxy
+            port:
+              name: http

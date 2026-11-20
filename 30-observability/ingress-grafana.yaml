@@ -1,4 +1,4 @@
-# https://grafana.digitalwitch.online -> Grafana (Grafana's own login)
+# https://grafana.jogecloud.online -> Grafana (Grafana's own login)
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -14,17 +14,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-    - hosts:
-        - grafana.digitalwitch.online
-      secretName: grafana-tls
+  - hosts:
+    - grafana.jogecloud.online
+    secretName: grafana-tls
   rules:
-    - host: grafana.digitalwitch.online
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: grafana
-                port:
-                  name: http
+  - host: grafana.jogecloud.online
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: grafana
+            port:
+              name: http
